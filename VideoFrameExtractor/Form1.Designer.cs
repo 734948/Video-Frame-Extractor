@@ -1,197 +1,191 @@
-﻿namespace VideoFrameExtractor
+﻿using System.Windows.Forms;
+using System.ComponentModel;
+using System.Drawing;
+using LibVLCSharp.WinForms;
+
+namespace VideoFrameExtractor
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
+        private FolderBrowserDialog folderBrowserDialog;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem darkModeToolStripMenuItem;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        // Batch Controls
+        private Label label1;
+        private TextBox txtVideoPath;
+        private Button btnBrowse;
+        private Label label2;
+        private NumericUpDown numNthFrame;
+        private Label label3;
+        private ComboBox comboImageFormat;
+        private Label labelResolution;
+        private ComboBox comboResolution;
+        private Label labelImageCountTitle;
+        private TextBox textBoxImageCount;
+        private Button btnExtract;
+        private ProgressBar progressBarExtraction;
+        private Button btnCancel;
+
+        // Preview Controls
+        private Panel panelPreviewControls;
+        private VideoView videoView;
+        private TrackBar trackBarSeek;
+        private Label labelTimestamp;
+        private Button btnPlayPause;
+        private Button btnBrowsePreview;
+        private Button btnExtractFrame;
+
+        // Volume Controls
+        private Label labelVolume;
+        private TrackBar trackBarVolume;
+
+        private System.Windows.Forms.Timer timer1;
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            components = new Container();
+            folderBrowserDialog = new FolderBrowserDialog();
+            menuStrip1 = new MenuStrip();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            darkModeToolStripMenuItem = new ToolStripMenuItem();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+
+            // Batch Init
             label1 = new Label();
-            label2 = new Label();
             txtVideoPath = new TextBox();
             btnBrowse = new Button();
-            btnExtract = new Button();
+            label2 = new Label();
             numNthFrame = new NumericUpDown();
-            folderBrowserDialog = new FolderBrowserDialog();
-            progressBarExtraction = new ProgressBar();
-            btnCancel = new Button();
-            comboImageFormat = new ComboBox();
             label3 = new Label();
+            comboImageFormat = new ComboBox();
             labelResolution = new Label();
             comboResolution = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)numNthFrame).BeginInit();
-            SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(66, 48);
-            label1.Name = "label1";
-            label1.Size = new Size(119, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Select Video File";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(66, 161);
-            label2.Name = "label2";
-            label2.Size = new Size(174, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Enter Nth Frame Number";
-            // 
-            // txtVideoPath
-            // 
-            txtVideoPath.Location = new Point(66, 87);
-            txtVideoPath.Name = "txtVideoPath";
-            txtVideoPath.ReadOnly = true;
-            txtVideoPath.Size = new Size(150, 27);
-            txtVideoPath.TabIndex = 2;
-            // 
-            // btnBrowse
-            // 
-            btnBrowse.Location = new Point(294, 87);
-            btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(119, 29);
-            btnBrowse.TabIndex = 3;
-            btnBrowse.Text = "Browse...";
-            btnBrowse.UseVisualStyleBackColor = true;
-            btnBrowse.Click += btnBrowse_Click;
-            // 
-            // btnExtract
-            // 
-            btnExtract.Location = new Point(66, 378);
-            btnExtract.Name = "btnExtract";
-            btnExtract.Size = new Size(119, 29);
-            btnExtract.TabIndex = 4;
-            btnExtract.Text = "Extract Frames";
-            btnExtract.UseVisualStyleBackColor = true;
-            btnExtract.Click += btnExtract_Click;
-            // 
-            // numNthFrame
-            // 
-            numNthFrame.Location = new Point(295, 161);
-            numNthFrame.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numNthFrame.Name = "numNthFrame";
-            numNthFrame.Size = new Size(150, 27);
-            numNthFrame.TabIndex = 5;
-            numNthFrame.Value = new decimal(new int[] { 10, 0, 0, 0 });
-            // 
-            // progressBarExtraction
-            // 
-            progressBarExtraction.Location = new Point(66, 435);
-            progressBarExtraction.Name = "progressBarExtraction";
-            progressBarExtraction.Size = new Size(507, 29);
-            progressBarExtraction.TabIndex = 6;
-            // 
-            // btnCancel
-            // 
-            btnCancel.Location = new Point(699, 435);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
-            btnCancel.TabIndex = 11;
-            btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += btnCancel_Click;
-            // 
-            // comboImageFormat
-            // 
-            comboImageFormat.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboImageFormat.FormattingEnabled = true;
-            comboImageFormat.Items.AddRange(new object[] { "jpg", "png", "bmp", "tiff" });
-            comboImageFormat.Location = new Point(293, 229);
-            comboImageFormat.Name = "comboImageFormat";
-            comboImageFormat.Size = new Size(151, 28);
-            comboImageFormat.TabIndex = 8;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(66, 229);
-            label3.Name = "label3";
-            label3.Size = new Size(146, 20);
-            label3.TabIndex = 9;
-            label3.Text = "Select Image Format";
-            // 
-            // labelResolution
-            // 
-            labelResolution.AutoSize = true;
-            labelResolution.Location = new Point(66, 298);
-            labelResolution.Name = "labelResolution";
-            labelResolution.Size = new Size(173, 20);
-            labelResolution.TabIndex = 12;
-            labelResolution.Text = "Select Output Resolution";
-            // 
-            // comboResolution
-            // 
-            comboResolution.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboResolution.FormattingEnabled = true;
-            comboResolution.Items.AddRange(new object[] { "Original", "1920×1080", "1280x720", "854x480", "640x360", "426x240" });
-            comboResolution.Location = new Point(293, 298);
-            comboResolution.Name = "comboResolution";
-            comboResolution.Size = new Size(151, 28);
-            comboResolution.TabIndex = 13;
-            // 
-            // Form1
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(882, 503);
-            Controls.Add(comboResolution);
-            Controls.Add(labelResolution);
-            Controls.Add(label3);
-            Controls.Add(comboImageFormat);
-            Controls.Add(btnCancel);
-            Controls.Add(progressBarExtraction);
-            Controls.Add(numNthFrame);
-            Controls.Add(btnExtract);
-            Controls.Add(btnBrowse);
-            Controls.Add(txtVideoPath);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "Form1";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)numNthFrame).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            labelImageCountTitle = new Label();
+            textBoxImageCount = new TextBox();
+            btnExtract = new Button();
+            progressBarExtraction = new ProgressBar();
+            btnCancel = new Button();
+
+            // Preview Init
+            panelPreviewControls = new Panel();
+            videoView = new VideoView();
+            trackBarSeek = new TrackBar();
+            labelTimestamp = new Label();
+            btnPlayPause = new Button();
+            btnBrowsePreview = new Button();
+            btnExtractFrame = new Button();
+
+            // Volume Init
+            labelVolume = new Label();
+            trackBarVolume = new TrackBar();
+
+            timer1 = new System.Windows.Forms.Timer(components);
+
+            // Form Defaults
+            this.AutoScaleDimensions = new SizeF(96F, 96F);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.ClientSize = new Size(1200, 750);
+            this.Text = "Form1";
+
+            // Menu
+            menuStrip1.Items.Add(viewToolStripMenuItem);
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Size = new Size(1200, 24);
+            viewToolStripMenuItem.Text = "View";
+            viewToolStripMenuItem.DropDownItems.Add(darkModeToolStripMenuItem);
+            darkModeToolStripMenuItem.Text = "Dark mode";
+            darkModeToolStripMenuItem.CheckOnClick = true;
+            darkModeToolStripMenuItem.CheckedChanged += new System.EventHandler(this.darkModeToolStripMenuItem_CheckedChanged);
+
+            // Tabs
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+
+            // --- TAB 1: BATCH ---
+            tabPage1.Text = "Batch Extraction";
+            tabPage1.Padding = new Padding(16);
+
+            label1.Location = new Point(24, 28); label1.Text = "Select Video File"; label1.AutoSize = true;
+            txtVideoPath.Location = new Point(230, 24); txtVideoPath.Size = new Size(800, 23);
+            btnBrowse.Location = new Point(1040, 23); btnBrowse.Size = new Size(100, 25); btnBrowse.Text = "Browse..."; btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+
+            label2.Location = new Point(24, 68); label2.Text = "Enter Nth Frame Number"; label2.AutoSize = true;
+            numNthFrame.Location = new Point(230, 64); numNthFrame.Minimum = 1; numNthFrame.Maximum = 1000000; numNthFrame.Value = 10;
+
+            label3.Location = new Point(24, 108); label3.Text = "Select Image Format"; label3.AutoSize = true;
+            comboImageFormat.Location = new Point(230, 104); comboImageFormat.Items.AddRange(new object[] { "png", "jpg", "bmp", "webp" });
+
+            labelResolution.Location = new Point(24, 148); labelResolution.Text = "Select Output Resolution"; labelResolution.AutoSize = true;
+            comboResolution.Location = new Point(230, 144); comboResolution.Items.AddRange(new object[] { "Original", "1280x720", "1920x1080", "3840x2160" });
+
+            labelImageCountTitle.Location = new Point(24, 188); labelImageCountTitle.Text = "Estimated output images:"; labelImageCountTitle.AutoSize = true;
+            textBoxImageCount.Location = new Point(230, 184); textBoxImageCount.ReadOnly = true;
+
+            btnExtract.Location = new Point(470, 183); btnExtract.Size = new Size(120, 25); btnExtract.Text = "Extract Frames"; btnExtract.Click += new System.EventHandler(this.btnExtract_Click);
+
+            progressBarExtraction.Location = new Point(24, 240); progressBarExtraction.Size = new Size(1030, 24);
+            btnCancel.Location = new Point(1064, 239); btnCancel.Size = new Size(100, 25); btnCancel.Text = "Cancel"; btnCancel.Enabled = false; btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+
+            tabPage1.Controls.AddRange(new Control[] { label1, txtVideoPath, btnBrowse, label2, numNthFrame, label3, comboImageFormat, labelResolution, comboResolution, labelImageCountTitle, textBoxImageCount, btnExtract, progressBarExtraction, btnCancel });
+
+            // --- TAB 2: PREVIEW ---
+            tabPage2.Text = "Single Frame Extraction";
+
+            // Panel for Controls
+            panelPreviewControls.Dock = DockStyle.Bottom;
+            panelPreviewControls.Height = 120; // Enough space for buttons/trackbar
+            panelPreviewControls.Padding = new Padding(10);
+
+            // Seek Bar
+            trackBarSeek.Dock = DockStyle.Top;
+            trackBarSeek.Height = 45;
+            trackBarSeek.Scroll += new System.EventHandler(this.trackBarSeek_Scroll);
+
+            // Controls
+            btnPlayPause.Location = new Point(10, 60); btnPlayPause.Size = new Size(100, 30); btnPlayPause.Text = "Play"; btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
+            btnBrowsePreview.Location = new Point(120, 60); btnBrowsePreview.Size = new Size(140, 30); btnBrowsePreview.Text = "Browse Video"; btnBrowsePreview.Click += new System.EventHandler(this.btnBrowsePreview_Click);
+            btnExtractFrame.Location = new Point(270, 60); btnExtractFrame.Size = new Size(140, 30); btnExtractFrame.Text = "Save Frame"; btnExtractFrame.Click += new System.EventHandler(this.btnExtractFrame_Click);
+
+            // Volume Controls (New)
+            labelVolume.Location = new Point(450, 65); labelVolume.AutoSize = true; labelVolume.Text = "Volume:";
+            trackBarVolume.Location = new Point(500, 60); trackBarVolume.Size = new Size(150, 45);
+            trackBarVolume.Minimum = 0; trackBarVolume.Maximum = 100; trackBarVolume.Value = 100; trackBarVolume.TickStyle = TickStyle.None;
+            trackBarVolume.Scroll += new System.EventHandler(this.trackBarVolume_Scroll);
+
+            labelTimestamp.Location = new Point(660, 65); labelTimestamp.AutoSize = true; labelTimestamp.Text = "00:00:00 / 00:00:00";
+
+            panelPreviewControls.Controls.Add(btnPlayPause);
+            panelPreviewControls.Controls.Add(btnBrowsePreview);
+            panelPreviewControls.Controls.Add(btnExtractFrame);
+            panelPreviewControls.Controls.Add(labelVolume);
+            panelPreviewControls.Controls.Add(trackBarVolume);
+            panelPreviewControls.Controls.Add(labelTimestamp);
+            panelPreviewControls.Controls.Add(trackBarSeek); // Docks to top
+
+            videoView.Dock = DockStyle.Fill;
+            videoView.BackColor = Color.Black;
+
+            tabPage2.Controls.Add(videoView);
+            tabPage2.Controls.Add(panelPreviewControls);
+
+            this.Controls.Add(tabControl1);
+            this.Controls.Add(menuStrip1);
+            this.MainMenuStrip = menuStrip1;
         }
-
-        #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtVideoPath;
-        private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.Button btnExtract;
-        private System.Windows.Forms.NumericUpDown numNthFrame;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
-        private System.Windows.Forms.ProgressBar progressBarExtraction;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ComboBox comboImageFormat;
-        private System.Windows.Forms.Label label3;
-        private Label labelResolution;
-        private ComboBox comboResolution;
     }
 }
