@@ -1,60 +1,88 @@
 # VideoFrameExtractor
 
-A Windows Forms application for extracting every Nth frame from video files using FFmpeg. Supports selecting output image format, output resolution scaling, real-time extraction progress, and cancellation feature.
+A robust Windows Forms application for extracting frames from video files. Features two main modes: **Batch Extraction** for bulk processing using FFmpeg, and **Single Frame Extraction** for precise, interactive snapshot capturing using LibVLC.
 
 ---
 
-## Features
+## ⚡ Quick Start: Download Dependencies
+This application requires FFmpeg to work. Before running, please follow these 3 steps:
 
-- Extract every Nth frame from any common video format (MP4, AVI, MOV, MKV, etc.)
-- Choose output image format (e.g., JPG, PNG)
-- Select output resolution (Original or scaled resolutions like 1920x1080, 1280x720, etc.)
-- Real-time progress bar displaying extraction progress
-- Responsive UI with a cancel button that interrupts the extraction cleanly
-- Supports FFmpeg progress reading from standard output for smooth feedback
+1.  1. **Download FFmpeg:** [Click here](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip) to download FFmpeg (Essentials Build).
+2.  **Extract Files:** Open the downloaded zip file and go to the `bin` folder.
+3.  **Copy & Paste:** Copy `ffmpeg.exe` and `ffprobe.exe` and paste them into the same folder as `VideoFrameExtractor.exe`.
 
 ---
 
-## Installation & Usage
+## 🚀 Features
 
-1. Place `ffmpeg.exe` and `ffprobe.exe` in the application directory.
-2. Open the application.
-3. Browse and select a video file.
-4. Choose desired Nth frame extraction rate.
-5. Select output image format and resolution.
-6. Click Extract and wait for completion or cancel anytime.
-7. Extracted frames will be saved in the chosen output folder.
+### 1. Batch Extraction Tab
+- **Bulk Processing:** Extract every Nth frame from any common video format (MP4, AVI, MOV, MKV, etc.).
+- **Smart Resolution Filtering:** Automatically detects video resolution and hides "upscaling" options to prevent errors.
+- **Customization:** Choose output format (JPG, PNG, BMP, WEBP) and resolution (4K, 2K, 1080p, etc.).
+- **Real-time Progress:** Visual progress bar with accurate duration tracking.
+- **Robust Cancellation:** Cleanly interrupt the process at any time without corrupting files.
 
----
+### 2. Single Frame Extraction Tab (New in v2.0)
+- **Interactive Player:** Play, pause, and seek through videos to find the perfect moment.
+- **Precision Capture:** Pause the video and click "Save Frame" to capture the exact displayed frame.
+- **Smart Options Popup:** 
+  - Choose Format (JPG, PNG, etc.)
+  - Choose Resolution (Original, 1080p, 720p).
+  - *Note: Higher resolutions are automatically disabled if the source video is smaller to ensure quality.*
+- **Volume Control:** Built-in volume slider for the video preview.
+- **Playback Safety:** Automatically pauses video when saving to prevent missed frames.
 
-## Version History
-
-- **v1.0**: Initial stable version with basic extraction, progress, and cancellation.
-- **v1.1**: Added output resolution selector allowing scaled frame extraction.
-- **v1.2**: Major update with robust cancel implementation using multi-task async pattern for stable cancellation and UI responsiveness.
-
----
-
-## Requirements
-
-- Windows OS
-- .NET Framework (compatible with your Visual Studio target version)
-- FFmpeg and FFprobe binaries
+### 3. General
+- **Dark Mode:** Built-in dark theme for comfortable usage.
+- **No Upscaling:** Logic ensures you never accidentally upscale an image, preserving quality.
 
 ---
 
-## Contribution
+## 🛠️ Installation & Usage
 
-Pull requests and suggestions are welcome. Please ensure any features or fixes maintain UI responsiveness and process cancellation stability.
+1. **Download:** Get the latest Release from the Releases tab.
+2. **Setup:** Place `ffmpeg.exe` and `ffprobe.exe` in the application folder (see Quick Start above).
+3. **Run:** Open `VideoFrameExtractor.exe`.
+
+### How to Use
+**Batch Mode:**
+1. Select a video file.
+2. Choose "Nth Frame" (e.g., 10 to extract every 10th frame).
+3. Select Format and Resolution.
+4. Click **Extract**.
+
+**Single Frame Mode:**
+1. Switch to the "Single Frame Extraction" tab.
+2. Browse and load a video.
+3. Use the player to find your specific frame.
+4. Click **Save Frame**.
+5. A popup will appear—select your desired resolution and format, then click OK.
 
 ---
 
-## License
+## 📜 Version History
 
-Specify your license here if needed, e.g., MIT License.
+- **v2.0 (Current):** 
+  - Added **Single Frame Extraction** tab with interactive video player.
+  - Added **Smart Resolution Logic** (greys out invalid resolutions).
+  - Added **Volume Controller** for video preview.
+  - Added **Dark Mode** toggle.
+  - Improved progress bar accuracy for batch processing.
+- **v1.2:** Major update with robust cancel implementation using multi-task async pattern.
+- **v1.1:** Added output resolution selector allowing scaled frame extraction.
+- **v1.0:** Initial stable version with basic extraction, progress, and cancellation.
 
 ---
 
-## Contact
+## 💻 Requirements
 
-For any issues or feature requests, please open an issue on GitHub.
+- Windows OS (10/11 recommended)
+- .NET 6.0 or higher (depending on build target)
+- FFmpeg and FFprobe binaries (must be in app directory)
+- LibVLCSharp (NuGet package included in source)
+
+---
+
+## 📧 Contact
+
+For any issues or feature requests, please open an issue on this GitHub repository.
