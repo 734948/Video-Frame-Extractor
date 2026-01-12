@@ -7,7 +7,7 @@ A robust Windows Forms application for extracting frames from video files. Featu
 ## ⚡ Quick Start: Download Dependencies
 This application requires FFmpeg to work. Before running, please follow these 3 steps:
 
-1.  1. **Download FFmpeg:** [Click here](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip) to download FFmpeg (Essentials Build).
+1.  **Download FFmpeg:** [Click here](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip) to download FFmpeg (Essentials Build).
 2.  **Extract Files:** Open the downloaded zip file and go to the `bin` folder.
 3.  **Copy & Paste:** Copy `ffmpeg.exe` and `ffprobe.exe` and paste them into the same folder as `VideoFrameExtractor.exe`.
 
